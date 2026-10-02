@@ -29,12 +29,12 @@ export function generate(input: Input): Output {
         `GITHUB_TOKEN=${input.githubToken}`,
         `MCP_ACCESS_TOKEN=${mcpAccessToken}`,
         `GITHUB_OWNER=${input.githubOwner}`,
-        "PORT=3000",
+        "PORT=80",
       ].join("\n"),
       domains: [
         {
           host: "$(EASYPANEL_DOMAIN)",
-          port: 3000,
+          port: 80,
         },
       ],
       mounts: [],
