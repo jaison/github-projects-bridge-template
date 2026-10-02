@@ -1,5 +1,9 @@
 # GitHub Projects Bridge — Template para Easypanel
 
+<p align="center">
+  <img src="assets/logo.svg" alt="GitHub Projects Bridge" width="180">
+</p>
+
 [🇺🇸 English](README.md) | [🇧🇷 Português (Brasil)](README.pt-BR.md)
 
 Template do Easypanel para instalar o [GitHub Projects Bridge](https://github.com/jaison/github-projects-bridge), servidor MCP remoto para gerenciamento de GitHub Projects V2.
