@@ -5,9 +5,9 @@ import { Input } from "./meta";
 export function generate(input: Input): Output {
   const services: Services = [];
 
-  // Cryptographically secure secret, generated once per template installation.
-  // It is stored in the service environment and survives normal redeploys.
-  const mcpAccessToken = randomBytes(32).toString("hex");
+  // Generated once when the template is instantiated.
+  // Easypanel stores the environment value with the service configuration.
+  const oauthSigningSecret = randomBytes(32).toString("hex");
 
   services.push({
     type: "app",
@@ -27,8 +27,13 @@ export function generate(input: Input): Output {
       },
       env: [
         `GITHUB_TOKEN=${input.githubToken}`,
-        `MCP_ACCESS_TOKEN=${mcpAccessToken}`,
         `GITHUB_OWNER=${input.githubOwner}`,
+        `PUBLIC_URL=https://$(EASYPANEL_DOMAIN)`,
+        `GITHUB_OAUTH_CLIENT_ID=${input.githubOAuthClientId}`,
+        `GITHUB_OAUTH_CLIENT_SECRET=${input.githubOAuthClientSecret}`,
+        `OAUTH_ALLOWED_GITHUB_USERS=${input.oauthAllowedGithubUsers}`,
+        `OAUTH_SIGNING_SECRET=${oauthSigningSecret}`,
+        "OAUTH_DATA_FILE=/data/oauth-state.json",
         "PORT=80",
       ].join("\n"),
       domains: [
@@ -37,7 +42,13 @@ export function generate(input: Input): Output {
           port: 80,
         },
       ],
-      mounts: [],
+      mounts: [
+        {
+          type: "volume",
+          name: "oauth-data",
+          mountPath: "/data",
+        },
+      ],
     },
   });
 
