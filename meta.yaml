@@ -1,13 +1,15 @@
 name: GitHub Projects Bridge
 description: Remote MCP server for managing GitHub Projects V2 through the GitHub GraphQL API.
-instructions:
-  Enter a GitHub fine-grained Personal Access Token with Projects read and write permission. The template generates a separate MCP access secret for this installation.
+instructions: |
+  For Projects V2 boards owned by a personal GitHub account, create a GitHub Personal Access Token (classic) with the project scope (Full control of projects). The template generates a separate MCP access secret for this installation.
 changeLog:
   - date: 2026-10-02
     description: Initial Easypanel template
 links:
   - label: GitHub repository
     url: https://github.com/jaison/github-projects-bridge
+  - label: Create GitHub token (classic)
+    url: https://github.com/settings/tokens
   - label: Template source
     url: https://github.com/jaison/github-projects-bridge-template
 schema:
@@ -28,8 +30,8 @@ schema:
       minLength: 1
     githubToken:
       type: string
-      title: GitHub Fine-grained Personal Access Token
-      description: Requires Projects permission set to Read and write.
+      title: GitHub Personal Access Token (classic)
+      description: Classic token with the project scope (Full control of projects). For personal-account Projects V2.
       minLength: 1
 benefits:
   - title: GitHub Projects V2 over MCP
