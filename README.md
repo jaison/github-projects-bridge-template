@@ -2,7 +2,17 @@
 
 [🇺🇸 English](README.md) | [🇧🇷 Português (Brasil)](README.pt-BR.md)
 
+<p align="center">
+  <img src="assets/logo.svg" alt="GitHub Projects Bridge" width="180">
+</p>
+
 An Easypanel template for deploying [GitHub Projects Bridge](https://github.com/jaison/github-projects-bridge), a remote MCP server for GitHub Projects V2.
+
+## Why this exists
+
+GitHub Projects V2 is useful as a project-management backend, but AI agents need an MCP interface to interact with it as part of an agentic workflow. GitHub Projects Bridge provides that connection: it exposes project operations through MCP while keeping the server-side GitHub service token out of the MCP client.
+
+The Easypanel template turns that bridge into a reproducible deployment with OAuth 2.1 + PKCE, persistent OAuth state, and automatic secret generation.
 
 ## What it creates
 
@@ -86,8 +96,9 @@ The implementation assumes a single service instance. Do not run multiple indepe
 
 ## Template files
 
-- `meta.yaml`: template metadata, instructions, and installation input schema.
+- `meta.yaml`: template metadata, instructions, installation input schema, branding, and catalog description.
 - `index.ts`: Easypanel service configuration, environment generation, OAuth secret generation, and persistent volume configuration.
+- `assets/logo.svg`: Catalog logo for GitHub Projects Bridge.
 
 ## Related project
 
@@ -95,7 +106,7 @@ The implementation assumes a single service instance. Do not run multiple indepe
 
 ## Publishing to the Easypanel public catalog
 
-To propose this template for the official catalog, copy `meta.yaml` and `index.ts` into `templates/github-projects-bridge/` in `easypanel-io/templates` and submit a pull request. Publication depends on review by Easypanel maintainers.
+To propose this template for the official catalog, copy `meta.yaml`, `index.ts`, and `assets/logo.svg` into `templates/github-projects-bridge/` in `easypanel-io/templates` and submit a pull request. Publication depends on review by Easypanel maintainers.
 
 ## License
 
