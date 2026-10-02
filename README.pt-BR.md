@@ -24,13 +24,23 @@ O segredo de acesso é gerado com bytes aleatórios criptograficamente seguros d
 | --- | --- |
 | Service Name | Nome atribuído à aplicação no Easypanel. O padrão é `github-projects-bridge`. |
 | GitHub User or Organization | Login do usuário ou da organização proprietária dos projetos Projects V2 que serão gerenciados. |
-| GitHub Fine-grained Personal Access Token | Token de acesso pessoal granular com a permissão `Projects` configurada como **Read and write**. |
+| GitHub Personal Access Token (classic) | Token clássico com o escopo `project` (**Full control of projects**). |
 
 O template gera automaticamente o segredo de acesso MCP; não é necessário informar esse valor durante a instalação.
 
-## Permissões do token GitHub
+## Como gerar o token do GitHub
 
-Crie um Fine-grained Personal Access Token e conceda a permissão **Projects** necessária para acessar os Projects V2 do usuário ou da organização, com acesso definido como **Read and write**.
+Para gerenciar Projects V2 pertencentes a uma conta pessoal do GitHub, utilize um **Personal Access Token (classic)**. Atualmente, os fine-grained personal access tokens não conseguem acessar Projects pertencentes a uma conta pessoal.
+
+1. Acesse [Configurações de tokens do GitHub — Tokens (classic)](https://github.com/settings/tokens).
+2. Selecione **Generate new token (classic)**.
+3. Informe um nome descritivo, por exemplo `GitHub Projects Bridge`.
+4. Em **Select scopes**, marque `project` — **Full control of projects**. O GitHub também marcará `read:project` automaticamente; isso é esperado.
+5. Gere o token e copie-o. O GitHub exibe o valor apenas uma vez.
+
+Não marque o escopo `repo` apenas para administrar quadros de projetos. O escopo clássico `project` é a permissão necessária para as operações do servidor.
+
+> **Projetos de organizações:** se o quadro pertencer a uma organização, ela poderá restringir o uso de tokens clássicos. Verifique a política de tokens e eventuais exigências de aprovação da organização. Tokens fine-grained oferecem a permissão **Projects** para organizações, mas atualmente não atendem Projects pertencentes a contas pessoais.
 
 O token é disponibilizado à aplicação pela variável `GITHUB_TOKEN`. O proprietário informado na instalação é configurado em `GITHUB_OWNER`.
 
@@ -40,7 +50,7 @@ A aplicação é configurada com as seguintes variáveis:
 
 | Variável | Finalidade |
 | --- | --- |
-| `GITHUB_TOKEN` | Fine-grained Personal Access Token informado durante a instalação. |
+| `GITHUB_TOKEN` | Personal Access Token (classic) informado durante a instalação, com o escopo `project`. |
 | `MCP_ACCESS_TOKEN` | Segredo aleatório e exclusivo da instalação, gerado pelo template. |
 | `GITHUB_OWNER` | Usuário ou organização do GitHub proprietária dos projetos. |
 | `PORT` | Porta interna da aplicação (`3000`). |
