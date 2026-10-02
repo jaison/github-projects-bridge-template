@@ -1,12 +1,13 @@
-import { Output, Services, randomString } from "~templates-utils";
+import { randomBytes } from "node:crypto";
+import { Output, Services } from "~templates-utils";
 import { Input } from "./meta";
 
 export function generate(input: Input): Output {
   const services: Services = [];
 
-  // Generated once while the template is instantiated. It is stored in the
-  // service environment, so normal container restarts/redeploys keep it stable.
-  const mcpAccessToken = randomString(64);
+  // Cryptographically secure secret, generated once per template installation.
+  // It is stored in the service environment and survives normal redeploys.
+  const mcpAccessToken = randomBytes(32).toString("hex");
 
   services.push({
     type: "app",
