@@ -6,7 +6,7 @@ An Easypanel template for deploying [GitHub Projects Bridge](https://github.com/
 
 ## What it creates
 
-The template creates an Easypanel application from `jaison/github-projects-bridge` (branch `main`), builds its root Dockerfile, exposes internal port `3000`, and generates a unique `MCP_ACCESS_TOKEN` (32 cryptographically random bytes) for the installation.
+The template creates an Easypanel application from `jaison/github-projects-bridge` (branch `main`), builds its root Dockerfile, exposes internal port `80`, and generates a unique `MCP_ACCESS_TOKEN` (32 cryptographically random bytes) for the installation.
 
 ## Installation inputs
 
@@ -37,7 +37,7 @@ For **organization-owned** Projects V2, fine-grained tokens support the organiza
 | `GITHUB_TOKEN` | GitHub Personal Access Token (classic) with the `project` scope. |
 | `MCP_ACCESS_TOKEN` | Random, per-installation MCP authentication secret. |
 | `GITHUB_OWNER` | GitHub user or organization that owns the projects. |
-| `PORT` | Internal application port (`3000`). |
+| `PORT` | Internal application port (`80`). |
 
 Keep both tokens private. MCP clients must send the generated `MCP_ACCESS_TOKEN` as a Bearer token.
 
